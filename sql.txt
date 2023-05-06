@@ -1,0 +1,49 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table deposit {
+  id integer [primary key]
+  customer_id integer
+  deposit_status boolean [note: '1=Yes, 0=No']
+  duration varchar
+  campaign varchar
+  pdays varchar
+  previous varchar
+  poutcome varchar
+  created_at timestamp
+}
+
+Table customers {
+  id integer [primary key]
+  age_group varchar
+  gender varchar
+  location varchar
+  job_type varchar
+  industry varchar
+  seniority_level varchar
+  marital_status varchar
+  number_of_dependents integer
+  education_level varchar
+  field_of_study varchar
+  defaulted boolean [note: '1=Yes, 0=No']
+  balance_range varchar
+  account_type varchar
+  housing_status varchar
+  loan_status varchar
+  contact_method varchar
+  created_at timestamp
+}
+
+Table time {
+  id integer [primary key]
+  day_of_week varchar
+  day_of_month varchar
+  month varchar
+  year varchar
+  quarter varchar
+  week_of_year varchar
+  created_at timestamp
+}
+
+Ref: deposit.customer_id > customers.id // many-to-one
+Ref: deposit.created_at > time.created_at // many-to-one
